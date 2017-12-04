@@ -30,6 +30,8 @@ MY_LDFLAGS += -Wl,--gc-sections # remove unused function or data while link
 
 include $(CLEAR_VARS) # clear LOCAL_XXX except LOCAL_PATH
 LOCAL_MODULE	:= ndk_sample
+# LOCAL_MODULE_FILENAME := sample # rename output file
+# LOCAL_PCH := pch.h # precompiled headers
 LOCAL_SRC_FILES := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*.c))
 LOCAL_CFLAGS += $(MY_CFLAGS)
 LOCAL_LDFLAGS += $(MY_LDFLAGS)
