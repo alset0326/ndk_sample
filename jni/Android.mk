@@ -18,6 +18,8 @@ endif
 # MY_CFLAGS += -fno-stack-protector # for disable stack protector
 MY_CFLAGS += -fvisibility=hidden # hide symbols without JNIEXPORT
 MY_CFLAGS += -ffunction-sections -fdata-sections # remove unused function or data
+# MY_CFLAGS += -mstackrealign # keep 4-byte stack alignment with modern codes OR keep 16-byte stack alignment for SSE compatibility
+# MY_CFLAGS += -fno-asynchronous-unwind-tables # emit frame informations which would decrease size
 
 MY_LDFLAGS += -Wl,--gc-sections # remove unused function or data while link
 # MY_LDFLAGS += -static # static compile, not always work
