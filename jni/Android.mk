@@ -28,6 +28,12 @@ MY_LDFLAGS += -Wl,--gc-sections # remove unused function or data while link
 
 # MY_C_INCLUDES += $(LOCAL_PATH)/include
 
+# MY_CFLAGS += -fsanitize=address -fno-omit-frame-pointer # AddressSanitizer support
+# MY_LDFLAGS += -fsanitize=address # AddressSanitizer support
+
+# MY_CFLAGS += -mllvm -fla -mllvm -sub -mllvm -bcf # OLLVM support
+#
+
 ####################################################################
 
 include $(CLEAR_VARS) # clear LOCAL_XXX except LOCAL_PATH
