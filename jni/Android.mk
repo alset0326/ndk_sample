@@ -47,6 +47,9 @@ LOCAL_LDLIBS +=  $(MY_LDLIBS)
 LOCAL_C_INCLUDES += $(MY_C_INCLUDES)
 # LOCAL_ARM_MODE := arm
 # LOCAL_SHARED_LIBRARIES += libbinder libutils liblog libdl
+# LOCAL_LDLIBS+= -landroid -lEGL -lGLESv1_CM # Native activity support
+# LOCAL_STATIC_LIBRARIES:= android_native_app_glue # Native activity support
+
 
 ifeq ($(MY_EXE),true)
 	include $(BUILD_EXECUTABLE)
