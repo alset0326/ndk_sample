@@ -1,7 +1,7 @@
 APP_ABI := armeabi-v7a
 APP_PIE := true
 NDK_TOOLCHAIN_VERSION := clang
-# APP_PLATFORM := android-21
+APP_PLATFORM := android-21
 # APP_OPTIM := debug # default: release
 # APP_STL := c++_static # c++ support
 # LIBCXX_FORCE_REBUILD := true # build cxx library from source
