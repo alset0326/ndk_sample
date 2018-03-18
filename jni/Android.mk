@@ -47,6 +47,7 @@ ifeq ($(MY_DEBUG),true)
 	LOCAL_CFLAGS += -D DEBUG
 	ifneq ($(MY_EXE),true)
 		LOCAL_LDLIBS += -llog
+		LOCAL_CFLAGS += -D LOG_TAG='"$(LOCAL_MODULE)"'
 	endif		
 endif
 ifeq ($(MY_EXE),true)
