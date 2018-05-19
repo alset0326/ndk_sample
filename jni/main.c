@@ -39,9 +39,12 @@
 //////////////// end of print function used in so ////////////////
 #endif
 
+void my_init(void) __attribute__((constructor));
+void my_init(void) { DINFO("init_array test\n"); }
+
 #ifdef EXE
 int main(int argc, char *argv[]) {
-  DINFO("test\n");
+  DINFO("main test\n");
   return 0;
 }
 #endif
