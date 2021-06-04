@@ -1,6 +1,13 @@
 LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS) # clear LOCAL_XXX except LOCAL_PATH
+############################     SET A STATIC LIBRARY    ############################
+# https://stackoverflow.com/questions/25663989/warning-android-mk-non-system-libraries-in-linker-flags
+# include $(CLEAR_VARS) # clear LOCAL_XXX except LOCAL_PATH
+# LOCAL_MODULE := crypto
+# LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/openssl/include
+# LOCAL_SRC_FILES := openssl/lib/libcrypto.a
+# include $(PREBUILT_STATIC_LIBRARY)
+############################ END OF SET A STATIC LIBRARY ############################
 
 # Build options
 LOCAL_MODULE	:= ndk_sample
@@ -10,17 +17,19 @@ LOCAL_SRC_FILES := $(subst $(LOCAL_PATH)/,,$(wildcard $(LOCAL_PATH)/*.c))
 
 # Misc CFLAGS options
 # LOCAL_CFLAGS += -fno-stack-protector # for disable stack protector
-LOCAL_CFLAGS += -fvisibility=hidden # hide symbols without JNIEXPORT
+LOCAL_CFLAGS += -fvisibility=hidden -fvisibility-inlines-hidden # hide symbols without JNIEXPORT
 LOCAL_CFLAGS += -ffunction-sections -fdata-sections # remove unused function or data
 # LOCAL_CFLAGS += -mstackrealign # keep 4-byte stack alignment with modern codes OR keep 16-byte stack alignment for SSE compatibility
 # LOCAL_CFLAGS += -fno-asynchronous-unwind-tables # emit frame informations which would decrease size
 
 # Misc LDFLAGS options
 LOCAL_LDFLAGS += -Wl,--gc-sections # remove unused function or data while link
+LOCAL_LDFLAGS += -Wl,--exclude-libs,ALL  # remove symbols of prebuilt static libraries
 # LOCAL_LDFLAGS += -static # static compile, not always work
 
 # Misc LDLIBS options
 # LOCAL_LDLIBS += -L$(SYSROOT)/usr/lib # for additional linker flags
+# LOCAL_LDLIBS += -lz
 
 # AddressSanitizer support flags
 # LOCAL_CFLAGS += -fsanitize=address -fno-omit-frame-pointer # AddressSanitizer support
